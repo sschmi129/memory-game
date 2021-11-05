@@ -74,7 +74,6 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
 
   useEffect(() => {
     if (typeof (openTiles) !== "undefined") {
-      // console.log(openTiles[0].getAttribute("number"));
       if (openTiles.length === 2) {
         setBlock(true);
         setTurns(turns+1);
@@ -119,7 +118,6 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
     }
   }, [tileData]);
 
-  console.log();
   return (
     <div>
       <h1>Memory Game</h1>
@@ -145,7 +143,5 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
     </div>
   );
 });
-
-// style={{textAlign: 'center'}}
 
 export default MemoryGame;
