@@ -1,6 +1,11 @@
+html, body{
+  width: 100vw;
+  height: 100vh;
+  background-color: lightyellow;
+}
+
 .App {
   text-align: center;
-  background-color: lightyellow;
 }
 
 .GameField{
@@ -8,10 +13,12 @@
   grid-gap: 10px;
   width: fit-content;
   margin: auto;
-  /* position: absolute; */
 }
 
 .TileFront{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
   width: 144px;
   height: 144px;
@@ -20,9 +27,18 @@
 }
 
 .TileBack{
+  display: block;
   background-color: grey;
   width: 144px;
   height: 144px;
+  border: 1px solid transparent;
+}
+
+.TileBack:hover{
+  background-color: grey;
+  width: 144px;
+  height: 144px;
+  box-shadow: 0 0 5px 5px gold;
 }
 
 img{

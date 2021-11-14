@@ -38,8 +38,8 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
       tempIds.push(i);
       tempIds.push(i);
     }
-    // const tempShuffledIds = shuffle(tempIds);
-    const tempShuffledIds = tempIds;
+    const tempShuffledIds = shuffle(tempIds);
+    // const tempShuffledIds = tempIds;
 
     // fill with data: number(Number of Tile), id(Number of two same tiles), isFlipped(is open)
     var tempTileData = [];
@@ -78,7 +78,7 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
         setBlock(true);
         setTurns(turns+1);
         if (openTiles[0].getAttribute("id") !== openTiles[1].getAttribute("id")) {
-          const timer = setTimeout(() => {
+          setTimeout(() => {
             //add to
             let y = [...tileData];
             let z0 = { ...y[openTiles[0].getAttribute("number")] };
@@ -95,7 +95,7 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
           }, 1500);
           // clearTimeout(timer);
         } else {
-          const timer = setTimeout(() => {
+          setTimeout(() => {
             setOpenTiles();
             setOpenTilesCounter(0);
             setBlock(false);
