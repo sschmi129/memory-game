@@ -2,15 +2,18 @@ html, body{
   width: 100vw;
   height: 100vh;
   background-color: lightyellow;
+  font: 100%;
 }
 
 .App {
   text-align: center;
+  user-select: none;
+  overflow-y: hidden;
 }
 
 .GameField{
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 0.8rem;
   width: fit-content;
   margin: auto;
 }
@@ -20,8 +23,9 @@ html, body{
   justify-content: center;
   align-items: center;
   background-color: white;
-  width: 144px;
-  height: 144px;
+  box-shadow: 2px 2px 5px black;
+  width: 9rem;
+  height: 9rem;
   text-align: center;
   /* padding-top: 24px; */
 }
@@ -29,25 +33,32 @@ html, body{
 .TileBack{
   display: block;
   background-color: grey;
-  width: 144px;
-  height: 144px;
+  box-shadow: 2px 2px 5px black;
+  width: 9rem;
+  height: 9rem;
   border: 1px solid transparent;
 }
 
 .TileBack:hover{
   background-color: grey;
-  width: 144px;
-  height: 144px;
   box-shadow: 0 0 5px 5px gold;
 }
 
+.Overlay{
+  font-size: 1rem;
+}
+
+.GameName{
+  font-size: 3rem;
+}
+
 img{
-  width: 96px;
-  height: 96px;
+  width: 6rem;
+  height: 6rem;
 }
 
 button {
-  background-color: #4CAF50; /* Green */
+  background-color: #4CAF50;
   border: none;
   color: white;
   padding: 15px 32px;

@@ -13,7 +13,7 @@ function shuffle(array) {
   return array;
 }
 
-const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
+const MemoryGame = (({ tempTileCount, triggerRestart }) => {
 
   const [tileCount, setTileCount] = useState(); // 12 24 36
   const [rowcolumn, setRowcolumn] = useState([]);
@@ -42,7 +42,7 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
     // const tempShuffledIds = tempIds;
 
     // fill with data: number(Number of Tile), id(Number of two same tiles), isFlipped(is open)
-    var tempTileData = [];
+    let tempTileData = [];
     for (var i = 0; i < tileCount; i++) {
       tempTileData.push({ number: i, id: tempShuffledIds[i], isFlipped: false });
     };
@@ -76,7 +76,7 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
     if (typeof (openTiles) !== "undefined") {
       if (openTiles.length === 2) {
         setBlock(true);
-        setTurns(turns+1);
+        setTurns(turns + 1);
         if (openTiles[0].getAttribute("id") !== openTiles[1].getAttribute("id")) {
           setTimeout(() => {
             //add to
@@ -118,29 +118,43 @@ const MemoryGame = ( ({ tempTileCount, triggerRestart }) => {
     }
   }, [tileData]);
 
+  const tileDrawer = () => {
+    let tileDrawArray = [<></>];
+    if (typeof (tileData) !== 'undefined') {
+      for (let i = 0; i < tileData.length; i++) {
+        tileDrawArray.push(
+          <ReactCardFlip isFlipped={tileData[i].isFlipped} flipDirection="horizontal">
+            <div number={tileData[i].number} id={tileData[i].id} className='TileBack' onClick={(e) => handleTileClick(e)}></div>
+            <div number={tileData[i].number} id={tileData[i].id} className='TileFront'>
+              <img src={require(`../../public/assets/${tileData[i].id}.svg`).default} alt="" />
+            </div>
+          </ReactCardFlip>
+        )
+      }
+      tileDrawArray.push(
+        <h1>
+          Turns: {turns}
+        </h1>
+      )
+    }
+    return tileDrawArray;
+  }
+
   return (
-    <div>
-      <h1>Memory Game</h1>
-      {/* <div className='GameField'>
-        {(typeof (tileData) !== "undefined") ? mapTile() : <div></div>}
-      </div> */}
-      <div className='GameField' style={{'grid-template-rows': `repeat(${rowcolumn[0]}, auto)`, 'grid-template-columns': `repeat(${rowcolumn[1]}, auto)`}}>
-        { (typeof(tileData) !== 'undefined') ? tileData.map((tileDate) => (
-          <div>
-            <ReactCardFlip isFlipped={tileDate.isFlipped} flipDirection="horizontal">
-              <div number={tileDate.number} id={tileDate.id} className='TileBack' onClick={(e) => handleTileClick(e)}></div>
-              <div number={tileDate.number} id={tileDate.id} className='TileFront'>
-                <img src={require(`../../public/assets/${tileDate.id}.svg`).default} alt="" />
-              </div>
-            </ReactCardFlip>
-          </div>)) : <div></div>}
-          <h1 >
-            Turns: {turns}
-          </h1>
+    <>
+      <h1 class="GameName">Memory Game</h1>
+      <div className='GameField' style={{ 'grid-template-rows': `repeat(${rowcolumn[0]}, auto)`, 'grid-template-columns': `repeat(${rowcolumn[1]}, auto)` }}>
+        {tileDrawer()}
       </div>
-      {(win) ? <div className="Overlay"><h1>You WON!!!!</h1>
-      <button className="myButton" onClick={(e) => triggerRestart(e)}>Restart</button></div> : ''}
-    </div>
+      {(win) ?
+        <div className="Overlay">
+          <h1>You WON!!!!</h1>
+          <button className="myButton" onClick={(e) => triggerRestart(e)}>Restart</button>
+        </div>
+        :
+        <></>
+      }
+    </>
   );
 });
 
