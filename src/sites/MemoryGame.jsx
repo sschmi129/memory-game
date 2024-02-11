@@ -126,7 +126,8 @@ const MemoryGame = (({ tempTileCount, triggerRestart }) => {
           <ReactCardFlip isFlipped={tileData[i].isFlipped} flipDirection="horizontal">
             <div number={tileData[i].number} id={tileData[i].id} className='TileBack' onClick={(e) => handleTileClick(e)}></div>
             <div number={tileData[i].number} id={tileData[i].id} className='TileFront'>
-              <img src={require(`../../public/assets/${tileData[i].id}.svg`).default} alt="" />
+              <img src={require(`../../public/assets/${tileData[i].id}.svg`)} alt="" />
+              {/* <img src={`../../public/assets/${tileData[i].id}.svg`} alt="" /> */}
             </div>
           </ReactCardFlip>
         )
